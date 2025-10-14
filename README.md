@@ -11,7 +11,13 @@ specify the required variables and run the command `terraform init`.
 
 ```hcl
 module "hcloud_volume" {
-  source = "git::ssh://git@gitlab.com:terraform-child-modules-48151/terraform-hcloud-volume.git"
+  source  = "gitlab.com/terraform-child-modules-48151/terraform-hcloud-volume/local"
+  version = "1.0.0"
+
+  name = "volume-1"
+  size = 10
+
+  location = "nbg1"
 }
 
 ```
@@ -26,7 +32,9 @@ module "hcloud_volume" {
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_hcloud"></a> [hcloud](#provider\_hcloud) | ~> 1.0 |
 
 ## Modules
 
@@ -34,15 +42,35 @@ No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [hcloud_volume.this](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/volume) | resource |
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_automount"></a> [automount](#input\_automount) | Automount the volume upon attaching it (server\_id must be provided) | `bool` | `false` | no |
+| <a name="input_delete_protection"></a> [delete\_protection](#input\_delete\_protection) | Enable or disable delete protection | `bool` | `false` | no |
+| <a name="input_format"></a> [format](#input\_format) | Format volume after creation | `string` | `"ext4"` | no |
+| <a name="input_labels"></a> [labels](#input\_labels) | User-defined labels (key-value pairs) | `map(string)` | `{}` | no |
+| <a name="input_location"></a> [location](#input\_location) | The location name of the volume to create, not allowed if server\_id argument is passed | `string` | `null` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name of the volume to create | `string` | n/a | yes |
+| <a name="input_server_id"></a> [server\_id](#input\_server\_id) | Server to attach the Volume to, not allowed if location argument is passed | `number` | `null` | no |
+| <a name="input_size"></a> [size](#input\_size) | Size of the volume (in GB) | `number` | n/a | yes |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_delete_protection"></a> [delete\_protection](#output\_delete\_protection) | Whether delete protection is enabled |
+| <a name="output_id"></a> [id](#output\_id) | Unique ID of the volume |
+| <a name="output_labels"></a> [labels](#output\_labels) | User-defined labels (key-value pairs) |
+| <a name="output_linux_device"></a> [linux\_device](#output\_linux\_device) | Device path on the file system for the Volume |
+| <a name="output_location"></a> [location](#output\_location) | The location name |
+| <a name="output_name"></a> [name](#output\_name) | Name of the volume |
+| <a name="output_server_id"></a> [server\_id](#output\_server\_id) | Server ID the volume is attached to |
+| <a name="output_size"></a> [size](#output\_size) | Size of the volume |
 <!-- END_TF_DOCS -->
 
 ## Authors
