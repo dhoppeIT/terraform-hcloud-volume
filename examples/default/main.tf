@@ -4,5 +4,6 @@ module "hcloud_volume" {
   name = "volume-1"
   size = 10
 
-  location = "nbg1"
+  server_id = data.hcloud_server.this.id
+  automount = true
 }

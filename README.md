@@ -10,6 +10,17 @@ Copy and paste the following code snippet to your Terraform configuration,
 specify the required variables and run the command `terraform init`.
 
 ```hcl
+module "hcloud_server" {
+  source  = "gitlab.com/terraform-child-modules-48151/terraform-hcloud-server/local"
+  version = "1.1.0"
+
+  name        = "example-server"
+  image       = "debian-13"
+  server_type = "cx22"
+
+  location = "nbg1"
+}
+
 module "hcloud_volume" {
   source  = "gitlab.com/terraform-child-modules-48151/terraform-hcloud-volume/local"
   version = "1.0.0"
@@ -17,7 +28,8 @@ module "hcloud_volume" {
   name = "volume-1"
   size = 10
 
-  location = "nbg1"
+  server_id = module.hcloud_server.id
+  automount = true
 }
 
 ```

@@ -27,7 +27,9 @@ command `terraform destroy` when the resources are no longer needed.
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_hcloud"></a> [hcloud](#provider\_hcloud) | ~> 1.0 |
 
 ## Modules
 
@@ -37,7 +39,9 @@ No providers.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [hcloud_server.this](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/data-sources/server) | data source |
 
 ## Inputs
 
